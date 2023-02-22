@@ -1,10 +1,6 @@
 //Проверяет длину строки
 const checkStringLength = function (string, acceptedLength) {
-  if (string.length > acceptedLength) {
-    return false;
-  }
-
-  return true;
+  return string.length <= acceptedLength;
 };
 
 checkStringLength('проверка', 8);
@@ -12,25 +8,20 @@ checkStringLength('проверка', 8);
 //Проверяет, является ли строка палиндромом
 const checkPalindrome = function (string) {
   string = string.toLowerCase();
-  if (string === string.split('').reverse().join('')) {
-    return true;
-  }
-
-  return false;
+  return string === string.split('').reverse().join('');
 };
 
 checkPalindrome('ДовОд');
 
 //Извлекает цифры из строки, компелирует их в целое положительное число
-let getNumber = function (string) {
-  string = string.split('');
-  let arrNum = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-  let result = [];
-  for (let i = 0; i < string.length; i++) {
-    for (let g = 0; g < arrNum.length; g++) {
-      // eslint-disable-next-line eqeqeq
-      if (string[i] == arrNum[g]) {
-        result.push(string[i]);
+const getNumber = function (string) {
+  const stringDivided = string.split('');
+  const result = [];
+  for (let i = 0; i < stringDivided.length; i++) {
+    for (let g = 0; g < 10; g++) {
+      g = String(g);
+      if (stringDivided[i] === g) {
+        result.push(stringDivided[i]);
       }
     }
   }
@@ -40,14 +31,11 @@ let getNumber = function (string) {
 getNumber('hja dj873 5jc9   875983');
 
 //У функции три параметра: 1. исходная строка (primaryStr) 2. минимальная длина строки (minLength) 3. добавочные символы (extraSymbols)
-//- extraSymbols - в начало итоговой строки (resultStr); +++
-//- if (primaryStr > minLength) {add primaryStr};
-//- if (extraSymbols > resultLength) {cut extraSymbols from ending};
 
-let getResultString = function (primaryStr, minLength, extraSymbols) {
+
+const getResultString = function (primaryStr, minLength, extraSymbols) {
   let resultStr = '';
-  let resultLength = (extraSymbols + primaryStr).length;
-  let extraLength = minLength - primaryStr.length;
+  const extraLength = minLength - primaryStr.length;
   extraSymbols = extraSymbols.split('');
   if (primaryStr.length >= minLength) {
     return primaryStr;
