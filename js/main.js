@@ -1,4 +1,4 @@
-const COMMENTARIES = [
+const COMMENTS = [
   'Всё отлично!',
   'В целом всё неплохо. Но не всё.',
   'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
@@ -28,32 +28,31 @@ const getRandomInteger = (a, b) => {
   return Math.floor(result);
 };
 
-const photos = [];
-
 const createComments = function (i) {
   const comments = [];
   for (let g = 0; g <= 5; g++) {
-    const getRandomAvatar = getRandomInteger (1, 6);
-    const getRandomCommentary = getRandomInteger (0, COMMENTARIES.length - 1);
-    const getRandomName = getRandomInteger (0, USERNAMES.length - 1);
+    const randomAvatar = getRandomInteger (1, 6);
+    const randomCommentary = getRandomInteger (0, COMMENTS.length - 1);
+    const randomName = getRandomInteger (0, USERNAMES.length - 1);
     comments.push ({
       commentId: +(String(i) + String(g)),
-      avatar: `img/avatar-${getRandomAvatar}.svg`,
-      message: COMMENTARIES[getRandomCommentary],
-      name: USERNAMES[getRandomName]
+      avatar: `img/avatar-${randomAvatar}.svg`,
+      message: COMMENTS[randomCommentary],
+      name: USERNAMES[randomName]
     });
   }
   return comments;
 };
 
 const createUser = () => {
-  const getRandomLikes = getRandomInteger (15, 200);
+  const photos = [];
+  const likesAmount = getRandomInteger (15, 200);
   for (let i = 1; i <= 25; i++) {
     const photoInfo = {
       id: i,
       url: `photos/${i}.jpg`,
       description: 'Idk why I made this photo... do you like it?',
-      likes: getRandomLikes,
+      likes: likesAmount,
       comments: createComments(i)
     };
     photos.push(photoInfo);
